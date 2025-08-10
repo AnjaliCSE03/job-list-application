@@ -18,6 +18,11 @@ app.use('/api', router);
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '../client/build')));
 
+// Handle all other routes by sending the React app's index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
 // Catch-all route to serve React frontend
 app.get('*', (req, res) => {
   if (req.originalUrl.startsWith('/api')) {
@@ -43,4 +48,6 @@ app.listen(PORT, () => {
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
+
+
 
