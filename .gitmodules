@@ -1,0 +1,3 @@
+[submodule "server/job-list-application"]
+	path = server/job-list-application
+	url = https://github.com/AnjaliCSE03/job-list-application.git
