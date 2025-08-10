@@ -6,7 +6,7 @@ const dbConnection = async() => {
     const DB_URI = "mongodb+srv://anjali14ldh:7byDC0EhjWtUftdy@job-portal.tsf919k.mongodb.net/";
 
     try{
-        await mongoose.connect(DB_URI, { useUnifiedTopology: true});
+        await mongoose.connect(DB_URI);
         console.log('Database connected successfully.');
     }
     catch(error){
