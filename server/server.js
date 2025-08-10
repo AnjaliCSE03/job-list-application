@@ -11,26 +11,34 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
-// Your API routes
-app.use('/api', router);  // Changed from '/' to '/api' to separate frontend & backend routes
+// Register API routes under /api to separate from frontend routes
+app.use('/api', router);
 
-// Serve React frontend build files
-const __dirname = path.resolve(); // for ES modules, get current directory
-
+// Serve React static files
+const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-// Catch-all route to serve React's index.html for any non-API routes
+// Catch-all route to serve React frontend
 app.get('*', (req, res) => {
   if (req.originalUrl.startsWith('/api')) {
-    // If request starts with /api and no route matched, send 404
     return res.status(404).send({ message: 'API route not found' });
   }
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
-const PORT = process.env.PORT || 8000;
+// Optional: Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something went wrong!' });
+});
 
+const PORT = process.env.PORT || 8000;
 dbConnection();
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
