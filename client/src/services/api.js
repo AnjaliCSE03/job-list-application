@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "import axios from "axios";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "http://ec2-13-62-55-141.eu-north-1.compute.amazonaws.com:8000";
 
 export const saveData = async (data) => {
 
