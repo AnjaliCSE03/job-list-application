@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://ec2-13-62-55-141.eu-north-1.compute.amazonaws.com:8000";
+const API_URL = process.env.REACT_APP_API_URL;
+;
 
 export const saveData = async (data) => {
     try {

@@ -6,10 +6,10 @@ export const saveJobData = async(request, response) => {
         const newJob = new Job(request.body);
 
         await newJob.save();
-        response.status(200).json({ message: "Job saved successfully"});
+        response.status(200).json(newJob);
     }
     catch(error){
-        console.log(error.message);
+        console.error(error.message);
         response.status(500).json({ error: error.message});
     }
 }
@@ -20,7 +20,7 @@ export const getJobData = async(request, response) => {
         response.status(200).json(jobs);
     }
     catch(error){
-        console.log(error.message);
+        console.error(error.message);
         response.status(500).json({ error: error.message});
     }
 }

@@ -15,7 +15,4 @@ const PORT = process.env.PORT || 8000;
 
 dbConnection();
 
-app.listen(PORT, () =>
-     {
-        console.log(`Server is running on PORT ${PORT}`);
-     });
+app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
